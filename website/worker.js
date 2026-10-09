@@ -104,7 +104,7 @@ const html=`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta nam
 export default {
  async fetch(request,env){
  const path=new URL(request.url).pathname;
- if(/^\\/m0[34]-[0-9]{2}-[a-z0-9-]+\\.jpg$/.test(path)&&env?.ASSETS)return env.ASSETS.fetch(request);
+ if((path.startsWith('/m03-')||path.startsWith('/m04-'))&&path.endsWith('.jpg')&&env?.ASSETS)return env.ASSETS.fetch(request);
  const url=new URL(request.url);
  if(url.pathname==="/health")return Response.json({status:"ok",project:"Website_and_Training_Module",app:"training-academy-v3-screenshots"});
  if(url.pathname==="/"||url.pathname==="/training"||url.pathname==="/training/")return new Response(html,{headers:{"content-type":"text/html; charset=utf-8","cache-control":"no-store","x-content-type-options":"nosniff","referrer-policy":"strict-origin-when-cross-origin","content-security-policy":"default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src 'none'; img-src 'self' data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"}});

@@ -1,0 +1,3 @@
+name = "modulelab-business-api-poc"
+main = "src/index.js"
+compatibility_date = "2026-10-09"

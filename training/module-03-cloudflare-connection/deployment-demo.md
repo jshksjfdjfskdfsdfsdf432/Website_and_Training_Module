@@ -60,3 +60,11 @@ Do not add account tokens or credentials to the repository.
 
 ### Instructor note
 The deployment was confirmed by the learner; no direct independent HTTP probe was performed in this record. Avoid marking the automatic deployment exercise complete until a new commit has been observed in Cloudflare's deployment history.
+
+## Automatic deployment acceptance test — PASSED
+
+- **Trigger:** Documentation-only commit to GitHub `main` (commit `8a81a85`, message `Document first successful Cloudflare deployment and verification`).
+- **Cloudflare evidence:** Learner-provided Deployments screenshot shows the corresponding **Build** entry on `main`, marked **Ready**, with build duration **24 seconds**.
+- **Interpretation:** GitHub-to-Cloudflare automatic build/deployment integration is functioning. A separate, newer manual Wrangler deployment is also shown as Ready; it is not the evidence used for this test.
+- **Caveat:** The screenshot shows active deployment version `5143857f` with traffic 0%, so it does not independently establish which version is serving requests. The homepage and `/health` endpoint were previously confirmed working by the learner.
+- **Acceptance:** Git-triggered build test passed. Future content-change exercises should verify that the updated content is actually served on the production URL.

@@ -28,3 +28,13 @@ Deploy the repository's minimal Worker to Cloudflare, confirm its public URL, an
 - **Build command failure:** This demo needs no build command.
 
 Do not add account tokens or credentials to the repository.
+
+## Real deployment incident — Error 10021 (2026-10-09 UTC)
+
+**Observed log:** `Can't set compatibility date in the future: 2026-10-10`.
+
+**Cause:** `wrangler.toml` specified a date one day ahead of the Cloudflare build environment's UTC date.
+
+**Fix:** Set `compatibility_date = "2026-10-09"` (or another supported date not in the future), commit to `main`, and retry deployment. Do not change account credentials or build commands to resolve this error.
+
+**Verification:** Confirm Cloudflare deployment succeeds and `/health` returns JSON with `status: ok`.

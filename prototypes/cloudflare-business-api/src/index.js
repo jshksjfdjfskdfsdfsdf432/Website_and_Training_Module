@@ -15,7 +15,7 @@ export async function handleRequest(request, env = {}) {
     }
   }
   if (path === "/admin-preview") return new Response(adminDashboardHtml(), { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store", "x-content-type-options": "nosniff" } });
-  if (path.startsWith("/admin")) return requireAdmin(request, env);
+  if (path.startsWith("/admin")) return await requireAdmin(request, env);
   return respond({ error: "Not found" }, 404);
 }
 export default { fetch: handleRequest };

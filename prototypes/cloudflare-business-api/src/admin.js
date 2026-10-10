@@ -1,10 +1,9 @@
-export function requireAdmin(request, env) {
-  // Fail closed until an external identity provider and server-side session
-  // verification are integrated and tested. Never trust a browser-supplied role.
-  return new Response(JSON.stringify({ error: "Admin authentication is not configured" }), {
-    status: 403,
-    headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" }
-  });
+import { verifyAccess } from "./access.js";
+export async function requireAdmin(request, env) {
+  const identity = await verifyAccess(request, env);
+  const headers = { "content-type": "application/json; charset=utf-8", "cache-control": "no-store", "x-content-type-options": "nosniff" };
+  if (!identity.ok) return new Response(JSON.stringify({ error: identity.error }), { status: identity.status, headers });
+  return new Response(JSON.stringify({ ok: true, role: "admin", message: "Authenticated. Editing is not enabled." }), { status: 200, headers });
 }
 
 export function adminDashboardHtml() {

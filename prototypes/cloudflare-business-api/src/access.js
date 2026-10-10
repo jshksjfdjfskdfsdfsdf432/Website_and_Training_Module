@@ -20,7 +20,7 @@ function configured(env) {
 }
 export async function verifyAccess(request, env, fetchJwks = fetch) {
   const config = configured(env);
-  if (!config) return { ok: false, status: 503, error: "Admin authentication not configured" };
+  if (!config) return { ok: false, status: 403, error: "Admin authentication not configured" };
   const token = request.headers.get("Cf-Access-Jwt-Assertion");
   if (!token || token.length > 8192) return { ok: false, status: 401, error: "Access token required" };
   try {

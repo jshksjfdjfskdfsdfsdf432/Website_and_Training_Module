@@ -42,7 +42,8 @@ test("rejects incorrect audience and expired tokens", async () => {
 });
 test("rejects tampered signature", async () => {
   const {token, fetchKeys} = await signedToken();
-  const parts = token.split(".");\n  const tampered = parts[0] + "." + parts[1] + "." + (parts[2][0] === "A" ? "B" : "A") + parts[2].slice(1);
+  const parts = token.split(".");
+  const tampered = parts[0] + "." + parts[1] + "." + (parts[2][0] === "A" ? "B" : "A") + parts[2].slice(1);
   const result = await verifyAccess(new Request("https://example.test/admin", {headers: {"Cf-Access-Jwt-Assertion": tampered}}), env, fetchKeys);
   assert.equal(result.status, 401);
 });

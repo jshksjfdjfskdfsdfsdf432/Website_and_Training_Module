@@ -1,6 +1,8 @@
 # Module 09 — Secure administrator sign-in with Cloudflare Access
 
-**Status:** Prototype integration pending local tests and a separately configured Cloudflare Access application. No admin editing enabled.
+**Status:** Authentication unit tests passed locally (16/16 as reported by the learner); Cloudflare Access staging deployment and end-to-end login remain pending. No admin editing enabled.
+
+**Next lesson:** [Lesson 09.2 — workers.dev staging, deployment safeguards and troubleshooting](workers-dev-staging.md).
 
 ## Learning goals
 - Explain Cloudflare Access as the identity gate.
@@ -17,7 +19,7 @@
 6. After authorized staging deployment and Access setup, test a permitted admin, a non-permitted identity, and an unauthenticated browser. Do not deploy this prototype using its placeholder D1 database ID.
 
 ## Verification checklist
-- [ ] Unit tests pass
+- [x] Initial local unit tests passed (16/16); rerun after every change
 - [ ] Missing configuration denies access
 - [ ] No token denies access
 - [ ] Invalid signature, expired token and wrong audience deny access

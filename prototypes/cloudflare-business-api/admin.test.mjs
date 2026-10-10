@@ -9,7 +9,7 @@ test("dashboard preview is explicitly nonfunctional", () => {
   assert.match(html, /Media library/);
 });
 test("admin guard denies unauthenticated access", async () => {
-  const response = requireAdmin(new Request("https://example.test/admin"), {});
+  const response = await requireAdmin(new Request("https://example.test/admin"), {});
   assert.equal(response.status, 403);
   assert.match((await response.json()).error, /not configured/);
 });

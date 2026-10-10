@@ -1,3 +1,11 @@
 name = "modulelab-business-api-poc"
 main = "src/index.js"
 compatibility_date = "2026-10-09"
+
+# Local-only prototype database. The placeholder UUID is NOT a provisioned
+# Cloudflare database. Do not deploy this Worker or use --remote.
+[[d1_databases]]
+binding = "DB"
+database_name = "modulelab-business-poc"
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
